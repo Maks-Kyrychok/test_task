@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
 
-void main() => runApp(const MyApp());
+import 'package:flutter/material.dart';
 
+void main() => runApp(const MyApp());
+  
 class MyApp extends StatelessWidget {
+  
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +17,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
+  
 class MainScrinWidget extends StatefulWidget {
+  
   const MainScrinWidget({Key? key}) : super(key: key);
 
   @override
@@ -49,7 +53,7 @@ class _MainScrinWidgetState extends State<MainScrinWidget> {
     );
   }
 
-  _generateRandomColor() {
+  Color _generateRandomColor() {
     final random = Random();
     late final colorA = random.nextInt(256);
     late final colorR = random.nextInt(256);
