@@ -1,9 +1,13 @@
-# test_task
+# Hey there :wave:
 
 A new Flutter project.
 
 ### This application implements the creation of a random color when tapping anywhere on the screen :smile_cat:.
 ### It also implemented moving text, similar to the standard screensaver :dvd: DVD players of the 2000s. 
-### Who knows, maybe this time he will be in the corner :eyes:.
+### Who knows, maybe this time it will be in the corner :eyes:.
 
 ![gif](https://gifyu.com/image/SHIwq)
+
+<div id="header" align="center">
+  <img src="ttps://gifyu.com/image/SHIwq" width="100"/>
+</div>
