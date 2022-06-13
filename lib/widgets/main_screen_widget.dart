@@ -1,6 +1,8 @@
 import 'dart:async';
-import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:test_task/assets/constans.dart';
+import 'package:test_task/assets/generate_random_color.dart';
 
 ///This widget contains fields that affect how it looks.
 class MainScreenWidget extends StatefulWidget {
@@ -13,12 +15,10 @@ class MainScreenWidget extends StatefulWidget {
 
 class _MainScreenWidgetState extends State<MainScreenWidget> {
   final _textKey = GlobalKey();
-  late var _backgroundColor = GenerateRandomColor.getColor();
-  late var _textColor = _backgroundColor;
+  Color? _backgroundColor = GenerateRandomColor.getColor();
+  Color? _textColor = GenerateRandomColor.getColor();
 
-  late Timer _updateTimer;
-
-  bool _startAnimarion = false;
+  Timer? _updateTimer;
 
   double _xPosition = 0.0;
   double _yPosition = 0.0;
@@ -26,7 +26,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   double _yOffset = 10.0;
   @override
   void dispose() {
-    _updateTimer.cancel();
+    _updateTimer?.cancel();
     super.dispose();
   }
 
@@ -45,12 +45,11 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
             setState(
               () {
                 _backgroundColor = GenerateRandomColor.getColor();
-                _startAnimarion = !_startAnimarion;
               },
             );
           },
           child: ColoredBox(
-            color: _backgroundColor,
+            color: _backgroundColor ?? Colors.black,
             child: Stack(
               children: [
                 AnimatedPositioned(
@@ -59,9 +58,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                   left: _xPosition,
                   child: Center(
                     child: Text(
-                      'Hey there',
+                      bouncingText,
                       key: _textKey,
-                      style: TextStyle(color: _textColor, fontSize: 50),
+                      style: TextStyle(color: _textColor, fontSize: fontSize),
                     ),
                   ),
                 )
@@ -101,22 +100,6 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     _updateTimer = Timer(
       const Duration(milliseconds: 100),
       _update,
-    );
-  }
-}
-
-///This class have static methot which generate random color
-class GenerateRandomColor {
-  ///Initialize random
-  static Random random = Random();
-
-  ///Function for generate random color
-  static Color getColor() {
-    return Color.fromARGB(
-      random.nextInt(256),
-      random.nextInt(256),
-      random.nextInt(256),
-      random.nextInt(256),
     );
   }
 }
