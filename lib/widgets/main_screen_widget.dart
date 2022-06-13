@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,30 @@ class MainScreenWidget extends StatefulWidget {
 }
 
 class _MainScreenWidgetState extends State<MainScreenWidget> {
+  final _textKey = GlobalKey();
+  late var _backgroundColor = GenerateRandomColor.getColor();
+  late var _textColor = _backgroundColor;
+
+  late Timer _updateTimer;
+
+  bool _startAnimarion = false;
+
+  double _xPosition = 0.0;
+  double _yPosition = 0.0;
+  double _xOffset = 10.0;
+  double _yOffset = 10.0;
+  @override
+  void dispose() {
+    _updateTimer.cancel();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _scheduleUpdate();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,17 +44,28 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
           onTap: () {
             setState(
               () {
-                _generateRandomColor();
+                _backgroundColor = GenerateRandomColor.getColor();
+                _startAnimarion = !_startAnimarion;
               },
             );
           },
           child: ColoredBox(
-            color: _generateRandomColor(),
-            child: const Center(
-              child: Text(
-                'Hey there',
-                //style: TextStyle(),
-              ),
+            color: _backgroundColor,
+            child: Stack(
+              children: [
+                AnimatedPositioned(
+                  duration: const Duration(milliseconds: 100),
+                  top: _yPosition,
+                  left: _xPosition,
+                  child: Center(
+                    child: Text(
+                      'Hey there',
+                      key: _textKey,
+                      style: TextStyle(color: _textColor, fontSize: 50),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
         ),
@@ -37,12 +73,50 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     );
   }
 
-  Color _generateRandomColor() {
-    final random = Random();
-    late final colorA = random.nextInt(256);
-    late final colorR = random.nextInt(256);
-    late final colorG = random.nextInt(256);
-    late final colorB = random.nextInt(256);
-    return Color.fromARGB(colorA, colorR, colorG, colorB);
+  void _update() {
+    final screenConstraints =
+        (context.findRenderObject() as RenderBox).constraints;
+    final textSize =
+        (_textKey.currentContext?.findRenderObject() as RenderBox).size;
+
+    if (_xPosition + textSize.width >= screenConstraints.maxWidth ||
+        _xPosition < 0) {
+      _xOffset = -_xOffset;
+      _textColor = GenerateRandomColor.getColor();
+    }
+    if (_yPosition + textSize.height >= screenConstraints.maxHeight ||
+        _yPosition < 0) {
+      _yOffset = -_yOffset;
+      _textColor = GenerateRandomColor.getColor();
+    }
+
+    setState(() {
+      _xPosition += _xOffset;
+      _yPosition += _yOffset;
+    });
+    _scheduleUpdate();
+  }
+
+  void _scheduleUpdate() {
+    _updateTimer = Timer(
+      const Duration(milliseconds: 100),
+      _update,
+    );
+  }
+}
+
+///This class have static methot which generate random color
+class GenerateRandomColor {
+  ///Initialize random
+  static Random random = Random();
+
+  ///Function for generate random color
+  static Color getColor() {
+    return Color.fromARGB(
+      random.nextInt(256),
+      random.nextInt(256),
+      random.nextInt(256),
+      random.nextInt(256),
+    );
   }
 }
