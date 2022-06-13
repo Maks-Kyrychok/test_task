@@ -2,15 +2,8 @@
 
 A new Flutter project.
 
-## Getting Started
+### This application implements the creation of a random color when tapping anywhere on the screen :smile_cat:.
+### It also implemented moving text, similar to the standard screensaver :dvd: DVD players of the 2000s. 
+### Who knows, maybe this time he will be in the corner :eyes:.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](https://drive.google.com/file/d/1oGPdMLob64OkQxdUxZsPXx4EgvT5Zbl7/view?usp=sharing)
