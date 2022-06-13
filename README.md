@@ -6,8 +6,7 @@ A new Flutter project.
 ### It also implemented moving text, similar to the standard screensaver :dvd: DVD players of the 2000s. 
 ### Who knows, maybe this time it will be in the corner :eyes:.
 
-![gif](https://gifyu.com/image/SHIwy)
+![gif]([https://gifyu.com/image/SHIwy](https://gifyu.com/image/SHIwq))
 
-<div id="header" align="center">
-  <img src="[ttps://gifyu.com/image/SHIwq](https://gifyu.com/image/SHIwy)" width="100"/>
+  <img src="[ttps://gifyu.com/image/SHIwq](https://gifyu.com/image/SHIwy)"/>
 </div>
