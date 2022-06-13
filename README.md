@@ -6,4 +6,4 @@ A new Flutter project.
 ### It also implemented moving text, similar to the standard screensaver :dvd: DVD players of the 2000s. 
 ### Who knows, maybe this time it will be in the corner :eyes:.
 
-![Gif]([ttps://gifyu.com/image/SHIwq]https://gifyu.com/image/SHIwq)
+![Gif](https://gifyu.com/image/SHIwq)
